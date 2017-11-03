@@ -1,6 +1,6 @@
 addpath(pwd)
-function resultado = exponencial(suman,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY)
-    matrizCoef=[sumaX2 sumax ; sumaX suman];
+function resultado = exponencial(n,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY)
+    matrizCoef=[sumaX2 sumax ; sumaX n];
     matrizInv= inv(matrizCoef);
     terminosInd = [sumaXY;sumaY];
     AB = matrizInv*(terminosInd);
@@ -20,4 +20,4 @@ endfunction
 %Ejemplo de clase
 res = exponencial(5, 7.50, 33.33, 7.50, 9.404,11.875,14.422);
 printf("Y = %d * e^(%d*X)\n", res(2), res(1));
-graficarExponencial(1, 2.9, res(1), res(2));
+graficarExponencial(0, 2.9, res(1), res(2));

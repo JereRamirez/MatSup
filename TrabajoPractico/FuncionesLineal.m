@@ -15,5 +15,5 @@ endfunction
 %Ejemplo de clase
 res = lineal(9.6, 26.7, 21.1, 58.51, 5);
 printf("Y = %dX + %d\n", res(1), res(2));
-graficarLineal(1, 2.9, res(1), res(2));
+graficarLineal(0, 2.9, res(1), res(2));
 

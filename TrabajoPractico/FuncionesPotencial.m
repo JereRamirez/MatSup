@@ -16,4 +16,4 @@ endfunction
 
 res = potencial(9.6, 26.7, 21.1, 58.51, 5);
 printf("Y = %dx^(%dX)\n", res(2), res(1));
-graficarPotencial(1, 2.9, res(1), res(2));
+graficarPotencial(0, 2.9, res(1), res(2));
