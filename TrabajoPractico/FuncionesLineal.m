@@ -13,8 +13,9 @@ function graficarLineal(x1, x2, a, b)
   plot(x,y);  
 endfunction
 
-%Ejemplo de clase
-res = lineal(9.6, 26.7, 21.1, 58.51, 5);
-printf("Y = %dX + %d\n", res(1), res(2));
-graficarLineal(0, 2.9, res(1), res(2));
+
+function mostrarLineal(x1,x2)
+  l = figure(6);
+printf("Y = %dX + %d\n", x1, x2)
+end
 

@@ -14,10 +14,11 @@ endfunction
   function graficarExponencial(x1, x2, a, b)
   x = x1:0.1:x2;
   y = b*exp(a*x);
+  l = figure(5);
   plot(x,y);  
 endfunction
 
 %Ejemplo de clase
-res = exponencial(5, 7.50, 33.33, 7.50, 9.404,11.875,14.422);
-printf("Y = %d * e^(%d*X)\n", res(2), res(1));
-graficarExponencial(0, 2.9, res(1), res(2));
+%res = exponencial(5, 7.50, 33.33, 7.50, 9.404,11.875,14.422);
+%printf("Y = %d * e^(%d*X)\n", res(2), res(1));
+%graficarExponencial(0, 2.9, res(1), res(2));
