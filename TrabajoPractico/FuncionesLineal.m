@@ -9,6 +9,7 @@ endfunction
 function graficarLineal(x1, x2, a, b)
   x = x1:0.1:x2;
   y = a * x + b;
+  l = figure(5);
   plot(x,y);  
 endfunction
 
