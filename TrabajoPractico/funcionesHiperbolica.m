@@ -1,11 +1,11 @@
 addpath(pwd)
-function resultado = hiperbolica(n,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY)
+function resultado = hiperbolica(n,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY,R)
     matrizCoef=[sumaX2 sumaX ; sumaX n];
     matrizInv= inv(matrizCoef);
     terminosInd = [sumaXY;sumaY];
     AB = matrizInv*(terminosInd);
-    a = 1/AB(2);
-    b = AB(1)/a;
+    a = funcionRedondeo(1/AB(2),R);
+    b = funcionRedondeo(AB(1)/a,R);
    resultado = [a,b];
 
 endfunction 
@@ -19,7 +19,11 @@ endfunction
   
 endfunction
 
+function redondeo = funcionRedondeo(x,n)
+  a = x*(10^n);
+  redondeo = (round (a)) / (10^n);
+ end
 %Ejemplo de clase
-%res = hiperbolica(4, 10, 32, 2.083, 0.642,1.424,0.409);
+%res = hiperbolica(4, 10, 32, 2.083, 0.642,1.424,0.409,2);
 %printf("Y = %d  / (%d+X)\n", res(1), res(2));
 %graficarHiperbolica(0, 2.9, res(1), res(2));

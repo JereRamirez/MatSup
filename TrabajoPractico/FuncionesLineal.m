@@ -1,8 +1,8 @@
 addpath(pwd)
-function  resultado = lineal(sumaX,sumaY, sumaXCuadrados, productoXY, N) %Calcula a y b para la aproximacion lineal    
+function  resultado = lineal(sumaX,sumaY, sumaXCuadrados, productoXY, N,R) %Calcula a y b para la aproximacion lineal    
     a = det([productoXY, sumaX; sumaY, N]) / det([sumaXCuadrados, sumaX; sumaX, N]);
     b = det([sumaXCuadrados, productoXY; sumaX, sumaY]) / det([sumaXCuadrados, sumaX; sumaX, N]);
-    resultado = [a,b];
+    resultado = [funcionRedondeo(a,R),funcionRedondeo(b,R)];
 endfunction
 
 
@@ -16,6 +16,10 @@ endfunction
 
 function mostrarLineal(x1,x2)
   l = figure(6);
-printf("Y = %dX + %d\n", x1, x2)
+printf("Y = %dX + %d\n", x1, x2);
 end
 
+function redondeo = funcionRedondeo(x,n)
+  a = x*(10^n);
+  redondeo = (round (a)) / (10^n);
+ end
