@@ -5,7 +5,11 @@ function resultado = hiperbolica(n,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY,R)
     terminosInd = [sumaXY;sumaY];
     AB = matrizInv*(terminosInd);
     a = funcionRedondeo(1/AB(2),R);
-    b = funcionRedondeo(AB(1)/a,R);
+    if(a != 0)
+      b = funcionRedondeo(AB(1)/a,R);
+    else
+      b = 0;
+    endif
    resultado = [a,b];
 
 endfunction 
@@ -23,6 +27,7 @@ function redondeo = funcionRedondeo(x,n)
   a = x*(10^n);
   redondeo = (round (a)) / (10^n);
  end
+
 %Ejemplo de clase
 %res = hiperbolica(4, 10, 32, 2.083, 0.642,1.424,0.409,2);
 %printf("Y = %d  / (%d+X)\n", res(1), res(2));
