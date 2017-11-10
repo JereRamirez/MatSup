@@ -20,7 +20,7 @@ botonExponencial = uicontrol (f, "string", "Graficar exponencial", "position",[2
 botonHiperbola = uicontrol (f, "string", "Graficar hiperbola", "position",[20 80 150 40], "callback", "calcularHiperbola(inputX, inputY)");
 botonPotencial = uicontrol (f, "string", "Graficar potencial", "position",[20 40 150 40], "callback", "calcularPotencial(inputX, inputY)");
 
-botonMostrarFuncionLineal = uicontrol (f, "string", "Mostrar función lineal", "position",[220 200 180 40], "callback", "mostrarFuncionLineal(linealX,linealY)");
+botonMostrarFuncionLineal = uicontrol (f, "string", "Mostrar función lineal", "position",[220 200 180 40], "callback", "mostrarFuncionLineal(inputX, inputY)");
 botonMostrarFuncionParabola = uicontrol (f, "string", "Mostrar función parábola", "position",[220 160 180 40], "callback", "mostrarFuncionParabola(inputX, inputY)");
 botonMostrarFuncionExponencial = uicontrol (f, "string", "Mostrar función exponencial", "position",[220 120 180 40], "callback", "mostrarFuncionExponencial(inputX, inputY)");
 botonMostrarFuncionHiperbola = uicontrol (f, "string", "Mostrar función hiperbola", "position",[220 80 180 40], "callback", "mostrarFuncionHiperbola(inputX, inputY)");
@@ -53,55 +53,93 @@ function calcularLineal()
   coeficientesLineal = lineal(sumaVector(listaX), sumaVector(listaY), sumaCuadradosVector(listaX), sumaVectorProductoXY(listaX, listaY), length(listaX),decimal);
   linealX = coeficientesLineal(1);
   linealY = coeficientesLineal(2);
-  printf("Y = %dX + %d\n", coeficientesLineal(1),coeficientesLineal(2));
   graficarLineal(listaX(1), listaX(length(listaX)), coeficientesLineal(1), coeficientesLineal(2));
   end
   
 function mostrarFuncionLineal()
-mostrarLineal(linealX,linealY);
-end %no anda y ni idea
+  global listaX;
+  global listaY;
+  global linealX;
+  global linealY;
+  global decimal;
+  coeficientesLineal = lineal(sumaVector(listaX), sumaVector(listaY), sumaCuadradosVector(listaX), sumaVectorProductoXY(listaX, listaY), length(listaX),decimal);
+  linealX = coeficientesLineal(1);
+  linealY = coeficientesLineal(2);
+  printf("Y = %dX + %d\n", coeficientesLineal(1),coeficientesLineal(2));
+end
 
 function calcularParabola()
   global listaX;
   global listaY;
   global decimal;
-  coeficientesParabola = parabola(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaCuadradosVector(listaX),sumaCuboVector(listaX),sumaCuartaVector(listaX),sumaVectorProductoXY(listaX,listaY),sumaVectorProductoX2Y(listaX,listaY),decimal)
-  printf("Y = %dX^2+ %dX + %d\n", coeficientesParabola(1),coeficientesParabola(2), coeficientesParabola(3));
+  coeficientesParabola = parabola(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaCuadradosVector(listaX),sumaCuboVector(listaX),sumaCuartaVector(listaX),sumaVectorProductoXY(listaX,listaY),sumaVectorProductoX2Y(listaX,listaY),decimal);
   graficarParabola(0, listaX(length(listaX)), coeficientesParabola(1),coeficientesParabola(2),coeficientesParabola(3));
   end
 
+function mostrarFuncionParabola()
+  global listaX;
+  global listaY;
+  global linealX;
+  global linealY;
+  global decimal;
+  coeficientesParabola = parabola(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaCuadradosVector(listaX),sumaCuboVector(listaX),sumaCuartaVector(listaX),sumaVectorProductoXY(listaX,listaY),sumaVectorProductoX2Y(listaX,listaY),decimal)
+  linealX = coeficientesParabola(1);
+  linealY = coeficientesParabola(2);
+  printf("Y = %dX^2+ %dX + %d\n", coeficientesParabola(1),coeficientesParabola(2), coeficientesParabola(3));
+end
 
  function calcularExponencial()
   global listaX;
   global listaY;
   global decimal;
-  coeficientesExponencial = exponencial(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector(listaX),sumaLogaritmo(listaY),sumaCuadradosVector(listaX),sumaVectorProductoXLnY(listaX,listaY),decimal)
-  printf("Y = %d * e^(%dx)\n", coeficientesExponencial(2),coeficientesExponencial(1));
-  graficarExponencial(0, listaX(length(listaX)), coeficientesExponencial(1),coeficientesExponencial(2));
-    
+  coeficientesExponencial = exponencial(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector(listaX),sumaLogaritmo(listaY),sumaCuadradosVector(listaX),sumaVectorProductoXLnY(listaX,listaY),decimal);
+  graficarExponencial(0, listaX(length(listaX)), coeficientesExponencial(1),coeficientesExponencial(2));  
  end
+
+function mostrarFuncionExponencial()
+  global listaX;
+  global listaY;
+  global linealX;
+  global linealY;
+  global decimal;
+  coeficientesExponencial = exponencial(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector(listaX),sumaLogaritmo(listaY),sumaCuadradosVector(listaX),sumaVectorProductoXLnY(listaX,listaY),decimal);
+  linealX = coeficientesExponencial(1);
+  linealY = coeficientesExponencial(2);
+  printf("Y = %d * e^(%dx)\n", coeficientesExponencial(2),coeficientesExponencial(1));
+end
  
 
  function calcularHiperbola()
   global listaX;
   global listaY;
   global decimal;
-  coeficientesHiperbola = hiperbolica(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector1X(listaX),sumaVector1X(listaY),sumaCuadrados1XVector(listaX),sumaVectorProducto1X1Y(listaX,listaY),decimal)
+  coeficientesHiperbola = hiperbolica(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector1X(listaX),sumaVector1X(listaY),sumaCuadrados1XVector(listaX),sumaVectorProducto1X1Y(listaX,listaY),decimal);
+  graficarHiperbolica(0, listaX(length(listaX)), coeficientesHiperbola(1),coeficientesHiperbola(2));  
+ end
+ 
+function mostrarFuncionHiperbola()
+  global listaX;
+  global listaY;
+  global decimal;
+  coeficientesHiperbola = hiperbolica(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector1X(listaX),sumaVector1X(listaY),sumaCuadrados1XVector(listaX),sumaVectorProducto1X1Y(listaX,listaY),decimal);
   printf("Y = %d  / (%d+X)\n", coeficientesHiperbola(1),coeficientesHiperbola(2));
-  graficarHiperbolica(0, listaX(length(listaX)), coeficientesHiperbola(1),coeficientesHiperbola(2));
-    
  end
  
  function calcularPotencial()
   global listaX;
   global listaY;
   global decimal;
-  coeficientesPotencial = potencial(sumaLogaritmo(listaX),sumaLogaritmo(listaY),sumaLogaritmoCuadrado(listaX),sumaVectorProductoLnXLnY(listaX,listaY),length(listaX),decimal)
-  printf("Y = %dx^(%dX)\n", coeficientesPotencial(2),coeficientesPotencial(1));
+  coeficientesPotencial = potencial(sumaLogaritmo(listaX),sumaLogaritmo(listaY),sumaLogaritmoCuadrado(listaX),sumaVectorProductoLnXLnY(listaX,listaY),length(listaX),decimal);
   graficarExponencial(0, listaX(length(listaX)), coeficientesPotencial(1),coeficientesPotencial(2));
-    
  end
- 
+
+function mostrarFuncionPotencial()
+  global listaX;
+  global listaY;
+  global decimal;
+  coeficientesPotencial = potencial(sumaLogaritmo(listaX),sumaLogaritmo(listaY),sumaLogaritmoCuadrado(listaX),sumaVectorProductoLnXLnY(listaX,listaY),length(listaX),decimal);
+  printf("Y = %dx^(%dX)\n", coeficientesPotencial(2),coeficientesPotencial(1));
+ end
  
 function suma = sumaVector(v)
   suma = 0;
