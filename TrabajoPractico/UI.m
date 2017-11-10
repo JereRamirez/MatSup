@@ -5,13 +5,13 @@
  FuncionesPotencial
  addpath(pwd);
                    
-f = figure("deletefcn", "clear", "name", "TP Superior", "numbertitle", "off");
+f = figure("deletefcn", "clear", "name", "TP Superior", "numbertitle", "off", "position", [30 300 800 450]);
 global listaX = [];
 global listaY = [];
 global decimal = 0;
 
 botonAgregar = uicontrol (f, "string", "Agregar par de puntos", "position",[20 290 150 40], "callback", "agregar(inputX, inputY)");
-botonDecimales = uicontrol (f, "string", "Agregar", "position",[470 250 50 40], "callback", "agregarDecimales(inputDecimales)");
+botonDecimales = uicontrol (f, "string", "Agregar", "position",[700 290 50 40], "callback", "agregarDecimales(inputDecimales)");
 
 
 botonLineal = uicontrol (f, "string", "Graficar lineal", "position",[20 200 150 40], "callback", "calcularLineal(inputX, inputY)");
@@ -28,10 +28,18 @@ botonMostrarFuncionPotencial = uicontrol (f, "string", "Mostrar función potencia
 
 inputX = uicontrol (f, "style", "edit", "position",[40 350 150 40]);
 inputY = uicontrol (f, "style", "edit", "position",[300 350 150 40]);
+inputDecimales = uicontrol (f, "style", "edit", "position",[700 350 50 40]);
 t2 = uicontrol (f, "style", "text", "string", "Y", "position",[270 350 20 40]);
 t1 = uicontrol (f, "style", "text", "string", "X", "position",[10 350 20 40]);
-t3 = uicontrol (f, "style", "text", "string", "Cantidad de decimales", "position",[270 300 200 40]);
-inputDecimales = uicontrol (f, "style", "edit", "position",[470 300 50 40]);
+t3 = uicontrol (f, "style", "text", "string", "Cantidad de decimales", "position",[500 350 150 40]);
+
+global tLineal = uicontrol (f, "style", "text", "position",[420 200 200 40]);
+global tParabola= uicontrol (f, "style", "text", "position",[420 160 200 40]);
+global tExponencial= uicontrol (f, "style", "text", "position",[420 120 200 40]);
+global tHiperbola= uicontrol (f, "style", "text", "position",[420 80 200 40]);
+global tPotencial= uicontrol (f, "style", "text", "position",[420 40 200 40]);
+
+
 function agregar(eX, eY)
   global listaX;
   global listaY;
@@ -62,10 +70,11 @@ function mostrarFuncionLineal()
   global linealX;
   global linealY;
   global decimal;
+  global tLineal;
   coeficientesLineal = lineal(sumaVector(listaX), sumaVector(listaY), sumaCuadradosVector(listaX), sumaVectorProductoXY(listaX, listaY), length(listaX),decimal);
   linealX = coeficientesLineal(1);
   linealY = coeficientesLineal(2);
-  printf("Y = %dX + %d\n", coeficientesLineal(1),coeficientesLineal(2));
+  set(tLineal, "string", sprintf("Y = %dX + %d\n", coeficientesLineal(1),coeficientesLineal(2)));
 end
 
 function calcularParabola()
@@ -82,10 +91,11 @@ function mostrarFuncionParabola()
   global linealX;
   global linealY;
   global decimal;
-  coeficientesParabola = parabola(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaCuadradosVector(listaX),sumaCuboVector(listaX),sumaCuartaVector(listaX),sumaVectorProductoXY(listaX,listaY),sumaVectorProductoX2Y(listaX,listaY),decimal)
+  global tParabola;
+  coeficientesParabola = parabola(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaCuadradosVector(listaX),sumaCuboVector(listaX),sumaCuartaVector(listaX),sumaVectorProductoXY(listaX,listaY),sumaVectorProductoX2Y(listaX,listaY),decimal);
   linealX = coeficientesParabola(1);
   linealY = coeficientesParabola(2);
-  printf("Y = %dX^2+ %dX + %d\n", coeficientesParabola(1),coeficientesParabola(2), coeficientesParabola(3));
+  set(tParabola, "string", sprintf("Y = %dX^2+ %dX + %d\n", coeficientesParabola(1),coeficientesParabola(2), coeficientesParabola(3)));
 end
 
  function calcularExponencial()
@@ -102,10 +112,11 @@ function mostrarFuncionExponencial()
   global linealX;
   global linealY;
   global decimal;
+  global tExponencial;
   coeficientesExponencial = exponencial(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector(listaX),sumaLogaritmo(listaY),sumaCuadradosVector(listaX),sumaVectorProductoXLnY(listaX,listaY),decimal);
   linealX = coeficientesExponencial(1);
   linealY = coeficientesExponencial(2);
-  printf("Y = %d * e^(%dx)\n", coeficientesExponencial(2),coeficientesExponencial(1));
+  set(tExponencial, "string", sprintf("Y = %d * e^(%dx)\n", coeficientesExponencial(2),coeficientesExponencial(1)));
 end
  
 
@@ -121,8 +132,9 @@ function mostrarFuncionHiperbola()
   global listaX;
   global listaY;
   global decimal;
+  global tHiperbola;
   coeficientesHiperbola = hiperbolica(length(listaX),sumaVector(listaX),sumaVector(listaY),sumaVector1X(listaX),sumaVector1X(listaY),sumaCuadrados1XVector(listaX),sumaVectorProducto1X1Y(listaX,listaY),decimal);
-  printf("Y = %d  / (%d+X)\n", coeficientesHiperbola(1),coeficientesHiperbola(2));
+  set(tHiperbola, "string", sprintf("Y = %d  / (%d+X)\n", coeficientesHiperbola(1),coeficientesHiperbola(2)));
  end
  
  function calcularPotencial()
@@ -137,8 +149,9 @@ function mostrarFuncionPotencial()
   global listaX;
   global listaY;
   global decimal;
+  global tPotencial;
   coeficientesPotencial = potencial(sumaLogaritmo(listaX),sumaLogaritmo(listaY),sumaLogaritmoCuadrado(listaX),sumaVectorProductoLnXLnY(listaX,listaY),length(listaX),decimal);
-  printf("Y = %dx^(%dX)\n", coeficientesPotencial(2),coeficientesPotencial(1));
+  set(tPotencial, "string", sprintf("Y = %dx^(%dX)\n", coeficientesPotencial(2),coeficientesPotencial(1)));
  end
  
 function suma = sumaVector(v)
