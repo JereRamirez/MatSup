@@ -1,4 +1,4 @@
-addpath(pwd)
+addpath(pwd);
 function resultado = exponencial(n,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY,R)
     matrizCoef=[sumaX2 sumax ; sumaX n];
     matrizInv= inv(matrizCoef);
