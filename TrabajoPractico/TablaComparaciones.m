@@ -116,6 +116,34 @@ function mostrarTabla(boolLineal, boolParabola, boolExponencial, boolHiperbola, 
     margen = margen + 120;
   endif
   
+  
+  minError = sum(erroresLineal) + sum(erroresParabola) + sum(erroresExponencial) + sum(erroresHiperbola) + sum(erroresPotencial);
+  for i=1:2
+    stringMejoresAprox = "";
+    if(minError >= sum(erroresLineal) && length(erroresLineal) > 0)
+      stringMejoresAprox = sprintf("%s Lineal/ ", stringMejoresAprox);
+      minError = sum(erroresLineal);
+    endif
+    if(minError >= sum(erroresParabola) && length(erroresParabola) > 0)
+      stringMejoresAprox = sprintf("%s Parabola/ ", stringMejoresAprox);
+      minError = sum(erroresParabola);
+    endif
+    if(minError >= sum(erroresExponencial) && length(erroresExponencial) > 0)
+      stringMejoresAprox = sprintf("%s Exponencial/ ", stringMejoresAprox);
+      minError = sum(erroresExponencial);
+    endif
+    if(minError >= sum(erroresHiperbola) && length(erroresHiperbola) > 0)
+      stringMejoresAprox = sprintf("%s Hiperbola/ ", stringMejoresAprox);
+      minError = sum(erroresHiperbola);
+    endif
+    if(minError >= sum(erroresPotencial) && length(erroresPotencial) > 0)
+      stringMejoresAprox = sprintf("%s Potencial/ ", stringMejoresAprox);
+      minError = sum(erroresPotencial);
+    endif
+  endfor
+  stringMejoresAprox = sprintf("Mejor/es aproximaciones: %s", stringMejoresAprox);
+  uicontrol (f, "style", "text", "string", stringMejoresAprox, "position",[30 (altura-(length(x)+3)*50) (length(stringMejoresAprox)*7) 30]);
+  
 end
 
 function reiniciar()
