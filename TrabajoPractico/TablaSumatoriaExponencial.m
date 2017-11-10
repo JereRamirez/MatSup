@@ -21,8 +21,8 @@ function mostrarTablaExponencial(x, y, decimal)
     uicontrol (f, "style", "text", "string", num2str(y(i)), "position",[150 (altura-i*50) 20 30]);
     uicontrol (f, "style", "text", "string", num2str(x(i)^2), "position",[220 (altura-i*50) 20 30]);
     uicontrol (f, "style", "text", "string", num2str(y(i)*x(i)), "position",[290 (altura-i*50) 20 30]);
-    uicontrol (f, "style", "text", "string", num2str(log(y(i)), "position",[360 (altura-i*50) 20 30]);
-    uicontrol (f, "style", "text", "string", num2str(x(i)*log(y(i)), "position",[430 (altura-i*50) 20 30]);
+    uicontrol (f, "style", "text", "string", num2str(log(y(i))), "position",[360 (altura-i*50) 20 30]);
+    uicontrol (f, "style", "text", "string", num2str(x(i)*log(y(i))), "position",[430 (altura-i*50) 20 30]);
     uicontrol (f, "style", "text", "string", num2str(funcionRedondeo(res(2)*e ^(x(i)*res(1)), decimal)), "position",[500 (altura-i*50) 20 30]);
     uicontrol (f, "style", "text", "string", num2str(abs(y(i) - (funcionRedondeo(res(2)*e ^(x(i)*res(1)), decimal)))), "position",[570 (altura-i*50) 20 30]);
   endfor
