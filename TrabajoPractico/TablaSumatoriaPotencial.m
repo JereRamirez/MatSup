@@ -23,7 +23,18 @@ function mostrarTablaPotencial(x, y, decimal)
     totalXY += (funcionRedondeo(log(x(i))*log(y(i)), decimal));
     totalXcuadrado += (funcionRedondeo((log(x(i)))^2, decimal));
    endfor
-  for i = 1:(length(x))
+   
+  for i = 1:(length(x)+1)
+    if(i == (length(x)+1))
+      uicontrol (f, "style", "text", "string", "Total", "position",[10 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(sum(x)), "position",[80 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(sum(y)), "position",[150 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalX), "position",[220 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalXcuadrado), "position",[290 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalY), "position",[360 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalXY), "position",[430 (altura-i*50) 90 30]);
+      break
+     endif 
     uicontrol (f, "style", "text", "string", num2str(i), "position",[10 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(x(i)), "position",[80 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(y(i)), "position",[150 (altura-i*50) 90 30]);
@@ -31,6 +42,7 @@ function mostrarTablaPotencial(x, y, decimal)
     uicontrol (f, "style", "text", "string", num2str(funcionRedondeo((log(x(i)))^2, decimal)), "position",[290 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(funcionRedondeo(log(y(i)), decimal)), "position",[360 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(funcionRedondeo(log(x(i))*log(y(i)), decimal)), "position",[430 (altura-i*50) 90 30]);
+
   endfor
   uicontrol (f, "style", "text", "string", "Total", "position",[10 (altura-(length(x)+1)*50) 90 30]);
   uicontrol (f, "style", "text", "string", num2str(sum(x)), "position",[80 (altura-(length(x)+1)*50) 90 30]);

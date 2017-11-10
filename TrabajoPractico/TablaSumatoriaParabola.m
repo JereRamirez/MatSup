@@ -26,7 +26,19 @@ function mostrarTablaParabola(x, y, decimal)
     totalXY += (funcionRedondeo((y(i)*x(i)), decimal));
     totalXcuadradoY += (funcionRedondeo((x(i)^2)*y(i), decimal));
    endfor
-  for i = 1:(length(x))
+
+  for i = 1:(length(x)+1)
+    if(i == (length(x)+1))
+      uicontrol (f, "style", "text", "string", "Total", "position",[10 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(sum(x)), "position",[80 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(sum(y)), "position",[150 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalXcuadrado), "position",[220 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalXcubo), "position",[290 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalXcuarta), "position",[360 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalXY), "position",[430 (altura-i*50) 90 30]);
+      uicontrol (f, "style", "text", "string", num2str(totalXcuadradoY), "position",[500 (altura-i*50) 90 30]);
+      break
+     endif
     uicontrol (f, "style", "text", "string", num2str(i), "position",[10 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(x(i)), "position",[80 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(y(i)), "position",[150 (altura-i*50) 90 30]);
@@ -35,6 +47,7 @@ function mostrarTablaParabola(x, y, decimal)
     uicontrol (f, "style", "text", "string", num2str(funcionRedondeo((x(i)^4), decimal)), "position",[360 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(funcionRedondeo((y(i)*x(i)), decimal)), "position",[430 (altura-i*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(funcionRedondeo((x(i)^2)*y(i), decimal)), "position",[500 (altura-i*50) 90 30]);
+
   endfor
     uicontrol (f, "style", "text", "string", "Total", "position",[10 (altura-(length(x)+1)*50) 90 30]);
     uicontrol (f, "style", "text", "string", num2str(sum(x)), "position",[80 (altura-(length(x)+1)*50) 90 30]);
