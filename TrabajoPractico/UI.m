@@ -3,41 +3,50 @@
  FuncionesExponencial
  funcionesHiperbolica
  FuncionesPotencial
+ TablaComparaciones
  addpath(pwd);
                    
-f = figure("deletefcn", "clear", "name", "TP Superior", "numbertitle", "off", "position", [30 300 800 450]);
+f = figure("deletefcn", "clear", "name", "TP Superior", "numbertitle", "off", "position", [30 300 800 550]);
 global listaX = [];
 global listaY = [];
 global decimal = 0;
 
-botonAgregar = uicontrol (f, "string", "Agregar par de puntos", "position",[20 290 150 40], "callback", "agregar(inputX, inputY)");
-botonDecimales = uicontrol (f, "string", "Agregar", "position",[700 290 50 40], "callback", "agregarDecimales(inputDecimales)");
+botonAgregar = uicontrol (f, "string", "Agregar par de puntos", "position",[20 410 150 40], "callback", "agregar(inputX, inputY)");
+botonDecimales = uicontrol (f, "string", "Agregar", "position",[700 410 50 40], "callback", "agregarDecimales(inputDecimales)");
 
 
-botonLineal = uicontrol (f, "string", "Graficar lineal", "position",[20 200 150 40], "callback", "calcularLineal(inputX, inputY)");
-botonParabola = uicontrol (f, "string", "Graficar parabola", "position",[20 160 150 40], "callback", "calcularParabola(inputX, inputY)");
-botonExponencial = uicontrol (f, "string", "Graficar exponencial", "position",[20 120 150 40], "callback", "calcularExponencial(inputX, inputY)");
-botonHiperbola = uicontrol (f, "string", "Graficar hiperbola", "position",[20 80 150 40], "callback", "calcularHiperbola(inputX, inputY)");
-botonPotencial = uicontrol (f, "string", "Graficar potencial", "position",[20 40 150 40], "callback", "calcularPotencial(inputX, inputY)");
+botonLineal = uicontrol (f, "string", "Graficar lineal", "position",[20 320 150 40], "callback", "calcularLineal(inputX, inputY)");
+botonParabola = uicontrol (f, "string", "Graficar parabola", "position",[20 280 150 40], "callback", "calcularParabola(inputX, inputY)");
+botonExponencial = uicontrol (f, "string", "Graficar exponencial", "position",[20 240 150 40], "callback", "calcularExponencial(inputX, inputY)");
+botonHiperbola = uicontrol (f, "string", "Graficar hiperbola", "position",[20 200 150 40], "callback", "calcularHiperbola(inputX, inputY)");
+botonPotencial = uicontrol (f, "string", "Graficar potencial", "position",[20 160 150 40], "callback", "calcularPotencial(inputX, inputY)");
 
-botonMostrarFuncionLineal = uicontrol (f, "string", "Mostrar función lineal", "position",[220 200 180 40], "callback", "mostrarFuncionLineal(inputX, inputY)");
-botonMostrarFuncionParabola = uicontrol (f, "string", "Mostrar función parábola", "position",[220 160 180 40], "callback", "mostrarFuncionParabola(inputX, inputY)");
-botonMostrarFuncionExponencial = uicontrol (f, "string", "Mostrar función exponencial", "position",[220 120 180 40], "callback", "mostrarFuncionExponencial(inputX, inputY)");
-botonMostrarFuncionHiperbola = uicontrol (f, "string", "Mostrar función hiperbola", "position",[220 80 180 40], "callback", "mostrarFuncionHiperbola(inputX, inputY)");
-botonMostrarFuncionPotencial = uicontrol (f, "string", "Mostrar función potencial", "position",[220 40 180 40], "callback", "mostrarFuncionPotencial(inputX, inputY)");
+botonMostrarFuncionLineal = uicontrol (f, "string", "Mostrar función lineal", "position",[220 320 180 40], "callback", "mostrarFuncionLineal(inputX, inputY)");
+botonMostrarFuncionParabola = uicontrol (f, "string", "Mostrar función parábola", "position",[220 280 180 40], "callback", "mostrarFuncionParabola(inputX, inputY)");
+botonMostrarFuncionExponencial = uicontrol (f, "string", "Mostrar función exponencial", "position",[220 240 180 40], "callback", "mostrarFuncionExponencial(inputX, inputY)");
+botonMostrarFuncionHiperbola = uicontrol (f, "string", "Mostrar función hiperbola", "position",[220 200 180 40], "callback", "mostrarFuncionHiperbola(inputX, inputY)");
+botonMostrarFuncionPotencial = uicontrol (f, "string", "Mostrar función potencial", "position",[220 160 180 40], "callback", "mostrarFuncionPotencial(inputX, inputY)");
 
-inputX = uicontrol (f, "style", "edit", "position",[40 350 150 40]);
-inputY = uicontrol (f, "style", "edit", "position",[300 350 150 40]);
-inputDecimales = uicontrol (f, "style", "edit", "position",[700 350 50 40]);
-t2 = uicontrol (f, "style", "text", "string", "Y", "position",[270 350 20 40]);
-t1 = uicontrol (f, "style", "text", "string", "X", "position",[10 350 20 40]);
-t3 = uicontrol (f, "style", "text", "string", "Cantidad de decimales", "position",[500 350 150 40]);
+botonMostrarTablaComparativa = uicontrol (f, "string", "Mostrar tabla comparativa", "position",[20 80 180 40], "callback", "mostrarTablaComparativa(checkLineal, checkParabola, checkExponencial, checkHiperbolica, checkPotencial)");
 
-global tLineal = uicontrol (f, "style", "text", "position",[420 200 200 40]);
-global tParabola= uicontrol (f, "style", "text", "position",[420 160 200 40]);
-global tExponencial= uicontrol (f, "style", "text", "position",[420 120 200 40]);
-global tHiperbola= uicontrol (f, "style", "text", "position",[420 80 200 40]);
-global tPotencial= uicontrol (f, "style", "text", "position",[420 40 200 40]);
+checkLineal = uicontrol(f, "style", "checkbox", "string", "Lineal", "position", [250 80 70 40]);
+checkParabola = uicontrol(f, "style", "checkbox", "string", "Parabola", "position", [330 80 70 40]);
+checkExponencial = uicontrol(f, "style", "checkbox", "string", "Exponencial", "position", [410 80 90 40]);
+checkHiperbolica = uicontrol(f, "style", "checkbox", "string", "Hiperbolica", "position", [520 80 90 40]);
+checkPotencial= uicontrol(f, "style", "checkbox", "string", "Potencial", "position", [620 80 70 40]);
+
+inputX = uicontrol (f, "style", "edit", "position",[40 470 150 40]);
+inputY = uicontrol (f, "style", "edit", "position",[300 470 150 40]);
+inputDecimales = uicontrol (f, "style", "edit", "position",[700 470 50 40]);
+t2 = uicontrol (f, "style", "text", "string", "Y", "position",[270 470 20 40]);
+t1 = uicontrol (f, "style", "text", "string", "X", "position",[10 470 20 40]);
+t3 = uicontrol (f, "style", "text", "string", "Cantidad de decimales", "position",[500 470 150 40]);
+
+global tLineal = uicontrol (f, "style", "text", "position",[420 320 200 40]);
+global tParabola= uicontrol (f, "style", "text", "position",[420 280 200 40]);
+global tExponencial= uicontrol (f, "style", "text", "position",[420 240 200 40]);
+global tHiperbola= uicontrol (f, "style", "text", "position",[420 200 200 40]);
+global tPotencial= uicontrol (f, "style", "text", "position",[420 160 200 40]);
 
 
 function agregar(eX, eY)
@@ -153,6 +162,14 @@ function mostrarFuncionPotencial()
   coeficientesPotencial = potencial(sumaLogaritmo(listaX),sumaLogaritmo(listaY),sumaLogaritmoCuadrado(listaX),sumaVectorProductoLnXLnY(listaX,listaY),length(listaX),decimal);
   set(tPotencial, "string", sprintf("Y = %dx^(%dX)\n", coeficientesPotencial(2),coeficientesPotencial(1)));
  end
+ 
+ function mostrarTablaComparativa(checkLineal, checkParabola, checkExponencial, checkHiperbolica, checkPotencial)
+   global listaX;
+   global listaY;
+   global decimal;
+   mostrarTabla(get(checkLineal, "value"), get(checkParabola, "value"), get(checkExponencial, "value"), get(checkHiperbolica, "value"), get(checkPotencial, "value"), listaX, listaY, decimal);
+ end
+ 
  
 function suma = sumaVector(v)
   suma = 0;

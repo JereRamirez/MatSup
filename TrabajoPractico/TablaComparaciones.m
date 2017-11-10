@@ -1,5 +1,8 @@
 addpath(pwd);
-function mostrarTabla(boolLineal, boolParabola, boolExponencial, boolPotencial, boolHiperbola, x, y, decimal)
+global margen = 220;
+global altura = 930;
+
+function mostrarTabla(boolLineal, boolParabola, boolExponencial, boolHiperbola, boolPotencial, x, y, decimal)
   erroresLineal = [];
   erroresParabola = [];
   erroresExponencial = [];
@@ -7,7 +10,7 @@ function mostrarTabla(boolLineal, boolParabola, boolExponencial, boolPotencial, 
   erroresHiperbola = [];
   margen = 220;
   altura = 930;
-  f = figure("position", [1, 1, 5000 1000], "name", "Tabla de Comparaciones", "numbertitle", "off");
+  f = figure("position", [1, 1, 5000 1000], "name", "Tabla de Comparaciones", "numbertitle", "off", "deletefcn", "reiniciar");
   uicontrol (f, "style", "text", "string", "i", "position",[10 altura 20 30]);
   uicontrol (f ,"style", "text", "string", "X", "position",[80 altura 20 30]);
   uicontrol (f, "style", "text", "string", "Y", "position",[150 altura 20 30]);
@@ -113,4 +116,11 @@ function mostrarTabla(boolLineal, boolParabola, boolExponencial, boolPotencial, 
     margen = margen + 120;
   endif
   
+end
+
+function reiniciar()
+  global margen;
+  global altura;
+  margen = 220;
+  altura = 930;
 end
