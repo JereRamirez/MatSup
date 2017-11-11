@@ -6,11 +6,13 @@ function  resultado = lineal(sumaX,sumaY, sumaXCuadrados, productoXY, N,R) %Calc
 endfunction
 
 
-function graficarLineal(x1, x2, a, b)
+function graficarLineal(x1, x2, a, b, listaX, listaY)
   x = x1:0.1:x2;
   y = a * x + b;
   l = figure(5);
-  plot(x,y);  
+  plot(x,y);
+  hold on;
+  plot(listaX,listaY,"x");
 endfunction
 
 

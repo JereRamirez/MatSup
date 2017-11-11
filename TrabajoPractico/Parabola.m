@@ -11,11 +11,13 @@ function  resultado = parabola(n,sumaX,sumaY,sumaX2,sumaX3,sumaX4,sumaXY,sumaX2Y
 endfunction
 
 
-function graficarParabola(x1, x2, a, b,c)
+function graficarParabola(x1, x2, a, b,c, listaX, listaY)
   x = x1:0.1:x2;
   y = a*(x.^2) + b*x + c;
   l = figure(5);
   plot(x,y);  
+    hold on;
+  plot(listaX,listaY,"x");
 endfunction
 
 

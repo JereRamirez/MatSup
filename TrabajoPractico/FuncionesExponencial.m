@@ -11,11 +11,13 @@ function resultado = exponencial(n,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY,R)
 endfunction 
 
   
-  function graficarExponencial(x1, x2, a, b)
+  function graficarExponencial(x1, x2, a, b, listaX, listaY)
   x = x1:0.1:x2;
   y = b*exp(a*x);
   l = figure(5);
   plot(x,y);  
+    hold on;
+  plot(listaX,listaY,"x");
 endfunction
 
 

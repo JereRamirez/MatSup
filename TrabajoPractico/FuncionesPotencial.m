@@ -7,10 +7,13 @@ function  resultado = potencial(sumalnX,sumalnY, sumalnXCuadrados, productolnXY,
 endfunction
 
 
-function graficarPotencial(x1, x2, a, b)
+function graficarPotencial(x1, x2, a, b, listaX, listaY)
   x = x1:0.1:x2;
   y = b * (x.^a);
+  l = figure(5);
   plot(x,y);  
+   hold on;
+  plot(listaX,listaY,"x");
 endfunction
 
 function redondeo = funcionRedondeo(x,n)

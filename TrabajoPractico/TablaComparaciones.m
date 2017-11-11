@@ -8,9 +8,10 @@ function mostrarTabla(boolLineal, boolParabola, boolExponencial, boolHiperbola, 
   erroresExponencial = [];
   erroresPotencial = [];
   erroresHiperbola = [];
-  margen = 100;
+  margen = 250;
   altura = 500;
-  f = figure("position", get(0,"screensize")([3,4,3,4]).*[0.1 0.2 0.8 0.7], "name", "Tabla de Comparaciones", "numbertitle", "off");  uicontrol (f, "style", "text", "string", "i", "position",[10 altura 120 30]);
+  f = figure("position", get(0,"screensize")([3,4,3,4]).*[0.1 0.2 0.8 0.7], "name", "Tabla de Comparaciones", "numbertitle", "off"); 
+  uicontrol (f, "style", "text", "string", "i", "position",[10 altura 120 30]);
   uicontrol (f ,"style", "text", "string", "X", "position",[80 altura 120 30]);
   uicontrol (f, "style", "text", "string", "Y", "position",[150 altura 120 30]);
   for i = 1:length(x)
@@ -49,10 +50,10 @@ function mostrarTabla(boolLineal, boolParabola, boolExponencial, boolHiperbola, 
   
   if(boolHiperbola)
     uicontrol (f, "style", "text", "string", "Hiperbolica", "position",[margen altura 120 30]);
-      res = hiperbolica(length(x),sumaVector(x),sumaVector(y),sumaVector1X(x),sumaVector1X(y),sumaCuadrados1XVector(x),sumaVectorProducto1X1Y(x,y),decimal);
+      res = hiperbolica(length(x),sumaVector(x),sumaVector(y),sumaVector1X(x),sumaVector1X(y),sumaCuadrados1XVector(x),sumaVectorProducto1X1Y(x,y),decimal)
       for i = 1:length(x)        
-      uicontrol (f, "style", "text", "string",num2str(funcionRedondeo(res(1)/(x(i)*res(2)), decimal)) , "position",[margen (altura-i*50) 120 30]);
-      erroresHiperbola(i) = abs(y(i) - funcionRedondeo(res(1)/(x(i)*res(2)), decimal));
+      uicontrol (f, "style", "text", "string",num2str(funcionRedondeo(res(1)/(x(i)+res(2)), decimal)) , "position",[margen (altura-i*50) 120 30]);
+      erroresHiperbola(i) = abs(y(i) - funcionRedondeo(res(1)/(x(i)+res(2)), decimal));
     endfor
     margen = margen + 100;
   endif

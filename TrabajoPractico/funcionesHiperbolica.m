@@ -15,11 +15,13 @@ function resultado = hiperbolica(n,sumax,sumay,sumaX, sumaY, sumaX2,sumaXY,R)
 endfunction 
 
   
-  function graficarHiperbolica(x1, x2, a, b)
+  function graficarHiperbolica(x1, x2, a, b, listaX, listaY)
   x = x1:0.1:x2;
   y = a ./(b+x);
   l = figure(5);
-  plot(x,y);  
+  plot(x,y);    
+  hold on;
+  plot(listaX,listaY,"x");
   
 endfunction
 
