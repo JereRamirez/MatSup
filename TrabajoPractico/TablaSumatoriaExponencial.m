@@ -3,13 +3,12 @@ addpath(pwd);
 
 function mostrarTablaExponencial(x, y, decimal)
   margen = 220;
-  altura = 930;
+  altura = 500;
   xCuadrado = 0;
   logaritmoY = 0;
   productoXlogY = 0;
   res = exponencial(length(x),sumaVector(x),sumaVector(y),sumaVector(x),sumaLogaritmo(y),sumaCuadradosVector(x),sumaVectorProductoXLnY(x,y),decimal);
-  f = figure("position", [1, 1, 5000 1000], "name", "Tabla de funcion exponencial", "numbertitle", "off");
-  uicontrol (f, "style", "text", "string", "i", "position",[10 altura 90 30]);
+f = figure("position", get(0,"screensize")([3,4,3,4]).*[0.1 0.2 0.8 0.7], "name", "Tabla de funcion exponencial", "numbertitle", "off");  uicontrol (f, "style", "text", "string", "i", "position",[10 altura 90 30]);
   uicontrol (f ,"style", "text", "string", "x", "position",[80 altura 90 30]);
   uicontrol (f, "style", "text", "string", "y", "position",[150 altura 90 30]);
   uicontrol (f, "style", "text", "string", "X=x", "position",[220 altura 90 30]);

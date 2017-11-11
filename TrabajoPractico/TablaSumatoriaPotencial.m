@@ -3,14 +3,13 @@ FuncionesPotencial
 
 function mostrarTablaPotencial(x, y, decimal)
   margen = 220;
-  altura = 930;
+  altura = 500;
   totalX = 0;
   totalY = 0;
   totalXcuadrado = 0;
   totalXY = 0;
   res =  potencial(sumaLogaritmo(x),sumaLogaritmo(y),sumaLogaritmoCuadrado(x),sumaVectorProductoLnXLnY(x,y),length(x),decimal);
-  f = figure("position", [1, 1, 5000 1000], "name", "Tabla de funcion potencial", "numbertitle", "off");
-  uicontrol (f, "style", "text", "string", "i", "position",[10 altura 90 30]);
+f = figure("position", get(0,"screensize")([3,4,3,4]).*[0.1 0.2 0.8 0.7], "name", "Tabla de funcion potencial", "numbertitle", "off");  uicontrol (f, "style", "text", "string", "i", "position",[10 altura 90 30]);
   uicontrol (f ,"style", "text", "string", "x", "position",[80 altura 90 30]);
   uicontrol (f, "style", "text", "string", "y", "position",[150 altura 90 30]);
   uicontrol (f, "style", "text", "string", "X=ln(x)", "position",[220 altura 90 30]);
